@@ -1,0 +1,27 @@
+server:
+  port: 17000
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: vuelo-route
+        uri: lb://vuelos
+        predicates:
+        - Path=/vuelo/**
+      - id: vuelo-route-bis
+        uri: lb://vuelos-bis
+        predicates:
+        - Path=/vuelobis/**        
+      - id: hotel-route
+        uri: lb://hotel
+        predicates:
+        - Path=/hotel/**
+      - id: pago-route
+        uri: lb://pagos
+        predicates:
+        - Path=/pago/**
+
+eureka:
+  client:
+    service-url:
+       defaultZone: http://localhost:8761/eureka
